@@ -1,25 +1,49 @@
+using API.Utility;
+using APPLICATION;
+using INFRASTRUCTURE;
+using INFRASTRUCTURE.Extensions;
+using INFRASTRUCTURE.Invariant;
+using INFRASTRUCTURE.Swagger;
+using INFRASTRUCTURE.Utility;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors();
+builder.Services.AddOptions();
+builder.Services.AddSingleton(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddHttpContextAccessor()
+        .ConfigureAppServices(builder.Environment)
+        .AddApplication()
+        .AddControllers()
+        .AddNewtonsoftJson(JsonOptionsConfigure.ConfigureJsonOptions);
+builder.Services.AddAppApiVersioning().AddSwagger(builder.Environment, builder.Configuration);
+
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.AllowSynchronousIO = true;
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+app.UseCors(x => x
+             .SetIsOriginAllowed(origin => true)
+             .AllowAnyMethod()
+             .AllowAnyHeader()
+             .AllowCredentials());
+app.ConfigureMiddlewareForEnvironments(builder.Environment);
 app.UseHttpsRedirection();
+app.UseMiddleware<JsonExceptionMiddleware>();
+app.UseRouting();
 
-app.UseAuthorization();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
-app.MapControllers();
-
+app.Services.RunMi();
 app.Run();
+
