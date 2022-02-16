@@ -65,7 +65,18 @@ namespace INFRASTRUCTURE.Swagger
 
             return services;
         }
+        public static void UseSwaggerInDevAndStaging(this IApplicationBuilder app, IWebHostEnvironment hostingEnvironment)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint(
+                    $"/swagger/{Swagger.DocVersions.v1_0}/swagger.json",
+                    $"assetapp {Swagger.DocVersions.v1_0}"
+                    );
 
+            });
+        }
         private static OpenApiInfo CreateInfoForApiVersion(IConfiguration configuration, string version)
         {
             var info = new OpenApiInfo

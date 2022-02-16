@@ -8,6 +8,7 @@ using INFRASTRUCTURE.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -37,6 +38,7 @@ app.UseCors(x => x
 app.ConfigureMiddlewareForEnvironments(builder.Environment);
 app.UseHttpsRedirection();
 app.UseMiddleware<JsonExceptionMiddleware>();
+app.UseSwaggerInDevAndStaging(builder.Environment);
 app.UseRouting();
 
 app.UseEndpoints(endpoints =>
