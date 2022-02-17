@@ -1,5 +1,4 @@
-﻿
-namespace INFRASTRUCTURE.Validator
+﻿namespace INFRASTRUCTURE.Validator
 {
     [Serializable]
     public class ValidationException : Exception

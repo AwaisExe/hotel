@@ -1,10 +1,6 @@
-﻿using INFRASTRUCTURE.Interface;
+﻿using FluentValidation;
+using INFRASTRUCTURE.Interface;
 using INFRASTRUCTURE.Validator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APPLICATION.Hotel.Queries.HotelGetById
 {
@@ -12,7 +8,8 @@ namespace APPLICATION.Hotel.Queries.HotelGetById
     {
         public HotelGetByIdQueryValidator(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-
+            RuleFor(x => x.Id).NotEmpty().OverridePropertyName("Id").WithMessage("Id is required");
+            RuleFor(p => p.Id).GreaterThan(0).OverridePropertyName("Id2").WithMessage("Id cannot be 0");
         }
     }
 }

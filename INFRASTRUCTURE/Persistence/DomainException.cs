@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 
 namespace INFRASTRUCTURE.Persistence
 {
@@ -17,6 +16,5 @@ namespace INFRASTRUCTURE.Persistence
         }
         public int StatusCode { get; }
         public bool IsResponseList { get; set; }
-
     }
 }

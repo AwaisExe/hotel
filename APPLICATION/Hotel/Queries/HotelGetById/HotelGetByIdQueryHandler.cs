@@ -5,14 +5,12 @@ using INFRASTRUCTURE.Invariant;
 using INFRASTRUCTURE.MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace APPLICATION.Hotel.Queries.HotelGetById
 {
     public class HotelGetByIdQueryHandler : RequestHandlerBase<HotelGetByIdRequestDto, EntityResponseModel<HotelResponseDto>>
     {
-        public HotelGetByIdQueryHandler(ILoggerFactory loggerFactory,
-            IUnitOfWork unitOfWork, IMapper mapper) : base(loggerFactory, unitOfWork, mapper)
+        public HotelGetByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
 
         }

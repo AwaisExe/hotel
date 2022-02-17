@@ -1,11 +1,6 @@
 ﻿using FluentValidation;
 using INFRASTRUCTURE.Interface;
 using INFRASTRUCTURE.Validator;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APPLICATION.Booking.Commands.BookingCreate
 {
@@ -13,7 +8,8 @@ namespace APPLICATION.Booking.Commands.BookingCreate
     {
         public BookingCreateCommandValidator(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-           
+            RuleFor(x => x.HotelId).NotEmpty().OverridePropertyName("HotelId").WithMessage("HotelId is required");
+            RuleFor(p => p.HotelId).GreaterThan(0).OverridePropertyName("HotelId2").WithMessage("HotelId cannot be 0");
         }
     }
 }

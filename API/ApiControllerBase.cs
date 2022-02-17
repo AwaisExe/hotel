@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API
 {
-    [ApiController] 
+    [ApiController]
     public abstract class ApiControllerBase : ControllerBase
     {
-        private ISender _mediator;     
-        protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetService<ISender>();      
+        public IMediator _Mediator;
+        protected ApiControllerBase(IMediator mediator)
+        {
+            _Mediator = mediator;
+        }
     }
 }

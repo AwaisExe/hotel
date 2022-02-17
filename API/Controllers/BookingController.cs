@@ -2,6 +2,7 @@
 using APPLICATION.Booking.Models;
 using INFRASTRUCTURE.Invariant;
 using INFRASTRUCTURE.Swagger;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -12,6 +13,10 @@ namespace API.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     public class BookingController : ApiControllerBase
     {
+        public BookingController(IMediator mediator) : base(mediator)
+        {
+        }
+
         [HttpPost]
         [Route(AspNet.Mvc.ActionTemplate)]
         [MapToApiVersion(Swagger.Versions.v1_0)]
@@ -19,7 +24,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(EntityResponseModel<BookingResponseDto>), 200)]
         public async Task<IActionResult> Create([FromBody] BookingCreateDto model)
         {
-            var response = await Mediator.Send(model);
+            var response = await _Mediator.Send(model);
             return Ok(response);
         }
     }

@@ -5,22 +5,12 @@ using INFRASTRUCTURE.Invariant;
 using INFRASTRUCTURE.MediatR;
 using INFRASTRUCTURE.Persistence;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace APPLICATION.Booking.Commands.BookingCreate
 {
     public class BookingCreateCommandHandler : RequestHandlerBase<BookingCreateDto, EntityResponseModel<BookingResponseDto>>
     {
-        public BookingCreateCommandHandler(ILoggerFactory loggerFactory,
-            IUnitOfWork unitOfWork,
-            IMapper mapper) : base(loggerFactory, unitOfWork, mapper)
+        public BookingCreateCommandHandler(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
 
         }

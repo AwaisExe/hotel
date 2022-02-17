@@ -1,5 +1,4 @@
-﻿
-namespace INFRASTRUCTURE.Invariant
+﻿namespace INFRASTRUCTURE.Invariant
 {
     public sealed class StartUp
     {

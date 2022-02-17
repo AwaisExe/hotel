@@ -3,6 +3,7 @@ using APPLICATION.Hotel.Queries.HotelGetById;
 using APPLICATION.Hotel.Queries.JobGetAll;
 using INFRASTRUCTURE.Invariant;
 using INFRASTRUCTURE.Swagger;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -13,6 +14,10 @@ namespace API.Controllers
     [Produces(MediaTypeNames.Application.Json)]
     public class HotelController : ApiControllerBase
     {
+        public HotelController(IMediator _mediator) : base(_mediator)
+        {
+
+        }
 
         [HttpGet]
         [Route(AspNet.Mvc.ActionTemplate)]
@@ -21,7 +26,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(EntityResponseListModel<HotelResponseDto>), 200)]
         public async Task<IActionResult> GetAll([FromQuery] HotelGetAllRequestDto model)
         {
-            var response = await Mediator.Send(model);
+            var response = await _Mediator.Send(model);
             return Ok(response);
         }
 
@@ -32,7 +37,7 @@ namespace API.Controllers
         [ProducesResponseType(typeof(EntityResponseModel<HotelResponseDto>), 200)]
         public async Task<IActionResult> GetById([FromQuery] HotelGetByIdRequestDto model)
         {
-            var response = await Mediator.Send(model);
+            var response = await _Mediator.Send(model);
             return Ok(response);
         }
     }

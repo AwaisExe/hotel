@@ -1,5 +1,4 @@
-﻿
-using DOMAIN.Interface;
+﻿using DOMAIN.Interface;
 
 namespace APPLICATION.Hotel.Models
 {

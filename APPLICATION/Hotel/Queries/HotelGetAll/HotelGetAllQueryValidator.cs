@@ -1,7 +1,5 @@
-﻿
-using INFRASTRUCTURE.Interface;
+﻿using INFRASTRUCTURE.Interface;
 using INFRASTRUCTURE.Validator;
-
 
 namespace APPLICATION.Hotel.Queries.JobGetAll
 {

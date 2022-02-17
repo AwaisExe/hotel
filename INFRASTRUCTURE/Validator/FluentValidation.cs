@@ -1,12 +1,6 @@
 ﻿using DOMAIN.Entities;
 using FluentValidation;
 using INFRASTRUCTURE.Interface;
-using INFRASTRUCTURE.Persistence;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace INFRASTRUCTURE.Validator
 {
