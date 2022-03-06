@@ -39,16 +39,15 @@
 
 	<ItemGroup>
     <Compile Remove="NewFolder\**" />
+    <Compile Remove="Utility\Security\**" />
     <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Utility\Security\**" />
     <None Remove="NewFolder\**" />
+    <None Remove="Utility\Security\**" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DOMAIN\DOMAIN.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Utility\Security\" />
   </ItemGroup>
 
 </Project>

@@ -45,6 +45,6 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllers();
 });
 
-app.Services.RunMi();
+//app.Services.RunMi();
 app.Run();
 

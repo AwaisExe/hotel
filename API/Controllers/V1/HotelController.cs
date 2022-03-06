@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
-namespace API.Controllers
+namespace API.V1.Controllers
 {
     [ApiVersion(Swagger.Versions.v1_0)]
     [Route(AspNet.Mvc.DefaultControllerTemplate)]
